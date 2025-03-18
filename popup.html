@@ -1,6 +1,130 @@
+<!DOCTYPE html>
 <html>
-  <body>
-    <h1>Hello Extensions</h1>
-    <script src="popup.js"></script>
-  </body>
+<head>
+  <title>LinkedIn to Google Sheets</title>
+  <style>
+    body {
+      width: 350px;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .data-container {
+      padding: 12px;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+    }
+    .data-row {
+      margin-bottom: 8px;
+    }
+    .data-label {
+      font-weight: bold;
+      font-size: 14px;
+      color: #666;
+    }
+    .data-value {
+      font-size: 15px;
+      word-break: break-word;
+    }
+    .btn {
+      background-color: #0077b5;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+    .btn:hover {
+      background-color: #006097;
+    }
+    .btn:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    .status {
+      color: #0077b5;
+      font-size: 13px;
+      height: 16px;
+      margin-top: 5px;
+    }
+    .error {
+      color: #d32f2f;
+    }
+    .success {
+      color: #388e3c;
+    }
+    .settings-section {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #e0e0e0;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .auth-btn {
+      background-color: #4285F4;
+      margin-bottom: 10px;
+    }
+    .auth-btn:hover {
+      background-color: #3367D6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>LinkedIn to Google Sheets</h2>
+    
+    <div id="authSection">
+      <p>Connect to Google Sheets to export data:</p>
+      <button id="authBtn" class="btn auth-btn">Connect to Google</button>
+      <div id="authStatus" class="status"></div>
+    </div>
+    
+    <div id="dataSection" style="display: none;">
+      <p>Profile data extracted:</p>
+      <div class="data-container">
+        <div class="data-row">
+          <div class="data-label">Name:</div>
+          <div id="name" class="data-value">Loading...</div>
+        </div>
+        <div class="data-row">
+          <div class="data-label">Role:</div>
+          <div id="role" class="data-value">Loading...</div>
+        </div>
+        <div class="data-row">
+          <div class="data-label">Company:</div>
+          <div id="company" class="data-value">Loading...</div>
+        </div>
+        <div class="data-row">
+          <div class="data-label">Profile URL:</div>
+          <div id="profileUrl" class="data-value">Loading...</div>
+        </div>
+      </div>
+      
+      <div class="settings-section">
+        <div class="data-label">Google Sheet ID:</div>
+        <input type="text" id="sheetId" placeholder="Enter Google Sheet ID">
+        <div class="data-label" style="margin-top: 10px;">Sheet Name:</div>
+        <input type="text" id="sheetName" placeholder="Sheet1">
+      </div>
+      
+      <button id="exportBtn" class="btn">Export to Google Sheets</button>
+      <div id="exportStatus" class="status"></div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
 </html>
+
